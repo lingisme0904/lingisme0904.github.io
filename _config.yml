@@ -3,18 +3,23 @@
 ## Source: https://github.com/hexojs/hexo/
 
 # Site
-title: 湖南大学-杜敏
-subtitle: 个人博客
-author: 杜敏
+title: Lingisme9
+subtitle: 'Lingisme9'
+description: '死亡不是生命的终点，而是生命另一个轮回的开始 for KOBE'
+keywords:
+author: 坏蛋先生
 language: zh-CN
-timezone:
+timezone: ''
 
 # URL
 ## If your site is put in a subdirectory, set url as 'http://yoursite.com/child' and root as '/child/'
-url: https://zscdumin.github.io/
+url: http://lingisme9.github.io
 root: /
-permalink: :year/:month/:day/:title/
+permalink: :year/:month:day:abbrlink.html
 permalink_defaults:
+pretty_urls:
+  trailing_index: true # Set to false to remove trailing 'index.html' from permalinks
+  trailing_html: true # Set to false to remove trailing '.html' from permalinks
 
 # Directory
 source_dir: source
@@ -30,7 +35,10 @@ skip_render:
 new_post_name: :title.md # File name of new posts
 default_layout: post
 titlecase: false # Transform title into titlecase
-external_link: true # Open external links in new tab
+external_link:
+  enable: true # Open external links in new tab
+  field: site # Apply to the whole site
+  exclude: ''
 filename_case: 0
 render_drafts: false
 post_asset_folder: false
@@ -38,33 +46,14 @@ relative_link: false
 future: true
 highlight:
   enable: false
-  line_number: true
-  auto_detect: false
-  tab_replace:
-  
+
 prism_plugin:
   mode: 'preprocess'    # realtime/preprocess
   theme: 'tomorrow'
-  line_number: true    # default false
-  custom_css:
+  line_number: false    # default false
+  custom_css:  
 
-search:
-  path: search.xml
-  field: post
 
-permalink_pinyin:
-  enable: true
-  separator: '-' # default: '-'
-  
-feed:
-  type: atom
-  path: atom.xml
-  limit: 50
-  hub:
-  content:
-  content_limit: 200
-  content_limit_delim: ' '
-  order_by: -date
 
 # Home page setting
 # path: Root path for your blogs index page. (default = '')
@@ -72,13 +61,17 @@ feed:
 # order_by: Posts order. (Order by date descending by default)
 index_generator:
   path: ''
-  per_page: 6
+  per_page: 12
   order_by: -date
-  
+
 # Category & Tag
 default_category: uncategorized
 category_map:
 tag_map:
+
+# Metadata elements
+## https://developer.mozilla.org/en-US/docs/Web/HTML/Element/meta
+meta_generator: true
 
 # Date / Time format
 ## Hexo uses Moment.js to parse and display date
@@ -86,29 +79,47 @@ tag_map:
 ## http://momentjs.com/docs/#/displaying/format/
 date_format: YYYY-MM-DD
 time_format: HH:mm:ss
+## Use post's date for updated date unless set in front-matter
+use_date_for_updated: false
 
 # Pagination
 ## Set per_page to 0 to disable pagination
-per_page: 6
+per_page: 10
 pagination_dir: page
+
+# Include / Exclude file(s)
+## include:/exclude: options only apply to the 'source/' folder
+include:
+exclude:
+ignore:
 
 # Extensions
 ## Plugins: https://hexo.io/plugins/
 ## Themes: https://hexo.io/themes/
 theme: hexo-theme-matery
 
-# MathJax Support
-mathjax:
-  enable: true
-  per_page: true
-  #cdn: //cdn.bootcss.com/mathjax/2.7.1/latest.js?config=TeX-AMS-MML_HTMLorMML
-  cdn: //cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js?config=TeX-AMS-MML_HTMLorMML
-  engine: mathjax
-
 # Deployment
 ## Docs: https://hexo.io/docs/deployment.html
 deploy:
   type: git
-  repository: zscdumin_github:ZSCDumin/ZSCDumin.github.io.git
+  repo: git@github.com:lingisme9/lingisme9.github.io.git
   branch: master
 
+
+search:
+  path: search.xml
+  field: post
+
+abbrlink: 
+  alg: crc16 #算法选项：crc16丨crc32
+  rep: dec #输出进制：dec为十进制，hex为十六进制
+
+feed:
+  type: atom
+  path: atom.xml
+  limit: 20
+  hub:
+  content:
+  content_limit: 140
+  content_limit_delim: ' '
+  order_by: -date
